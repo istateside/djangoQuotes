@@ -1,0 +1,11 @@
+{% if quotes %}
+  <ul>
+    {% for quote in quotes %}
+      <li><a href="/quotes/{{ quote.id }}">{{ quote.body}}</a></li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>
+    No quotes found!
+  </p>
+{% endif %}
