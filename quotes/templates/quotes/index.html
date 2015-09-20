@@ -1,7 +1,10 @@
+<head>
+  <title>Quotient - Index</title>
+</head>
 {% if quotes %}
   <ul>
     {% for quote in quotes %}
-      <li><a href="/quotes/{{ quote.id }}">{{ quote.body}}</a></li>
+      <li><a href="{% url 'quotes:detail' quote.id %}">{{ quote.body }}</a></li>
     {% endfor %}
   </ul>
 {% else %}

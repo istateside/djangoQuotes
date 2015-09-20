@@ -1,1 +1,17 @@
-{{ quote }}
+<head>
+  <title>Quotient - Quote {{ quote.id }}</title>
+</head>
+
+<h1>{{ quote }}</h1>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url 'quotes:update_quote' quote.id %}" method="post">
+  {% csrf_token %}
+  <label for="body">Quote Text
+    <textarea name='body' id='body'>{{ quote.body }}</textarea>
+  </label>
+  
+  <button>Update</button>
+</form>
+<a href="{% url 'quotes:index' %}">Back to Index</a>
