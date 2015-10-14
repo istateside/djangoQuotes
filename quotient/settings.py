@@ -14,7 +14,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-
+STATIC_ROOT = os.path.join(BASE_DIR, '../static')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
@@ -37,6 +37,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'quotes',
 )
 
@@ -53,21 +54,18 @@ MIDDLEWARE_CLASSES = (
 
 ROOT_URLCONF = 'quotient.urls'
 
-TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-            ],
-        },
-    },
-]
+TEMPLATE_DIRS = (
+    os.path.join(BASE_DIR, 'templates').replace('\\', '/'),
+)
+
+TEMPLATE_LOADERS = (
+    'django.template.loaders.filesystem.Loader',
+    'django.template.loaders.app_directories.Loader',
+)
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
 
 WSGI_APPLICATION = 'quotient.wsgi.application'
 
@@ -101,3 +99,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.8/howto/static-files/
 
 STATIC_URL = '/static/'
+
+REST_FRAMEWORK = {
+}
