@@ -1,21 +1,22 @@
-var path = require('path');
+var webpack = require('webpack'),
+    path = require('path');
 
 module.exports = {
-  entry: [
-    'webpack/hot/dev-server',
-    'webpack-dev-server/client?http://localhost:8080',
-    path.resolve(__dirname, 'app/main.jsx')
-  ],
+  debug: true,
+  entry: {
+    main: './app/main.jsx'
+  },
   output: {
-    path: path.resolve(__dirname, 'build'),
-    filename: "bundle.js"
+    path: path.resolve(__dirname, './build'),
+    filename: "[name].js"
   },
   resolve: {
+    extensions: ["", ".js", ".sass"],
     modulesDirectories: ['node_modules']
   },
   module: {
     loaders: [
-      { test: /\.scss$/, loader: ["sass", "css", "sass"] },
+      { test: /\.sass$/, loaders: ["style-loader", "css-loader", "sass-loader"] },
       { test: /\.jsx$/, loader: "jsx"}
     ]
   }

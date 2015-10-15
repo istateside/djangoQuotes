@@ -10,7 +10,7 @@ module.exports = React.createClass({
   render: function() {
     return (
       <div className='byline'>
-        <span>- </span><h4>{ this.state.name }</h4><em>{ this.state.title }</em>
+        <span>- </span><h4>{ this.state.name }</h4><span>, </span><em>{ this.state.title }</em>
       </div>
     )
   }
